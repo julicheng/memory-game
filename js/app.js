@@ -20,7 +20,10 @@ let cardSymbols = [
 
 // Select all cards
 let cards = document.querySelectorAll(".card");
+
 let openCards = [];
+let moves = 0;
+let matches = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -74,34 +77,58 @@ function showSymbol() {
 
 // Add card to array of open cards
 function addOpenCard() {
+    addMoves();
     openCards.push(this.firstElementChild.classList
         .toString()
         .slice(0, -3));
-        console.log(openCards[0]);
-    // checkCards();
+    // Check if there are 2 cards in array
+    if (openCards.length == 2) {
+        checkCards();
+    }
 }
 
-// // Check if there are 2 cards
-// function checkCards() {
-//     if (openCards.length === 2) {
-//         // Check if cards match
-//         if (openCards[0] === openCards[1]) {
-//             lockCards();
-//         // Check if cards do not match
-//         } else if (openCards[0] !== openCards[1]) {
-//             removeOpenCard();
-//         }
-//     }
-// }
+// Check if cards match
+function checkCards() {
+    if (openCards[0] === openCards[1]) {
+        lockCards();
+    } else {
+        setTimeout(removeOpenCards, 500);
+    }
+}
 
-// function lockCards() {
-//     let lock = document.querySelectorAll('.' + openCards[0]);
-//     console.log(lock);
-// }
+function lockCards() {
+    let lock = document.querySelectorAll("." + openCards[0]);
+    lock[0].parentElement.classList += " match";
+    lock[1].parentElement.classList += " match";
 
-// function removeOpenCard() {
+    openCards = [];
+    checkMatches();
+}
 
-// }
+function removeOpenCards() {
+    let unlock_0 = document.querySelectorAll("." + openCards[0]);
+    let unlock_1 = document.querySelectorAll("." + openCards[1]);
+
+    unlock_0[0].parentElement.classList.remove("open", "show");
+    unlock_0[1].parentElement.classList.remove("open", "show");
+    unlock_1[0].parentElement.classList.remove("open", "show");
+    unlock_1[1].parentElement.classList.remove("open", "show");
+
+    openCards = [];
+}
+
+function checkMatches() {
+    matches++;
+    if (matches === 8) {
+      console.log("you have won!");
+    }
+}
+
+// Count moves made
+function addMoves() {
+    moves++;
+    console.log(moves);
+}
 
 // when the page loads
 updateCards();
