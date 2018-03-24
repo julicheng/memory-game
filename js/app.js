@@ -20,6 +20,7 @@ let cardSymbols = [
 
 // Select all cards
 let cards = document.querySelectorAll(".card");
+let openCards = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -41,10 +42,9 @@ function updateCards() {
     shuffle(cardSymbols);
     for (let i = 0; i < cards.length; i++) {
         cards[i].firstElementChild.classList = "";
-        cards[i].firstElementChild.classList+= " fa " + cardSymbols[i];
+        cards[i].firstElementChild.classList+= cardSymbols[i] + " fa";
     }
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -57,17 +57,52 @@ function updateCards() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- for (let i = 0; i < cards.length; i++) {
-    cards[i].addEventListener("click", function() {
-        cards[i].classList += " open show";
-    })
- }
+// Set up event listener for a card when it is clicked
+function addEventListeners() {
+    for (let i = 0; i < cards.length; i++) {
+        // Display the card's symbol
+        cards[i].addEventListener("click", showSymbol);
+        // Add card to arry of open cards
+        cards[i].addEventListener("click", addOpenCard);
+    }
+}
 
+// Display the card's symbol
+function showSymbol() {
+    this.classList += " open show";
+}
 
-//  if it eqauls then stay turned over
-// if doesnt equal then turn both over
+// Add card to array of open cards
+function addOpenCard() {
+    openCards.push(this.firstElementChild.classList
+        .toString()
+        .slice(0, -3));
+        console.log(openCards[0]);
+    // checkCards();
+}
 
+// // Check if there are 2 cards
+// function checkCards() {
+//     if (openCards.length === 2) {
+//         // Check if cards match
+//         if (openCards[0] === openCards[1]) {
+//             lockCards();
+//         // Check if cards do not match
+//         } else if (openCards[0] !== openCards[1]) {
+//             removeOpenCard();
+//         }
+//     }
+// }
 
- // when the page loads
- updateCards();
+// function lockCards() {
+//     let lock = document.querySelectorAll('.' + openCards[0]);
+//     console.log(lock);
+// }
 
+// function removeOpenCard() {
+
+// }
+
+// when the page loads
+updateCards();
+addEventListeners();
