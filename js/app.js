@@ -1,5 +1,5 @@
 // Array to hold cards
-let cards = [
+let cardSymbols = [
   "fa-diamond",
   "fa-diamond",
   "fa-paper-plane-o",
@@ -19,7 +19,7 @@ let cards = [
 ];
 
 // Select all cards
-let cardElements = document.querySelectorAll(".card i");
+let cards = document.querySelectorAll(".card");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -38,10 +38,10 @@ function shuffle(array) {
 
 // Shuffle and display the cards
 function updateCards() {
-    shuffle(cards);
-    for (let i = 0; i < cardElements.length; i++) {
-        cardElements[i].classList = "";
-        cardElements[i].classList.add("fa", cards[i]);
+    shuffle(cardSymbols);
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].firstElementChild.classList = "";
+        cards[i].firstElementChild.classList+= " fa " + cardSymbols[i];
     }
 }
 
@@ -56,6 +56,17 @@ function updateCards() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+ for (let i = 0; i < cards.length; i++) {
+    cards[i].addEventListener("click", function() {
+        cards[i].classList += " open show";
+    })
+ }
+
+
+//  if it eqauls then stay turned over
+// if doesnt equal then turn both over
+
 
  // when the page loads
  updateCards();
