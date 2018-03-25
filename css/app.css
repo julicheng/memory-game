@@ -18,7 +18,8 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Comfortaa', 'Coda', cursive;
+    color: rgb(102, 156, 170);
 }
 
 .container {
@@ -29,8 +30,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Comfortaa', 'Open Sans', sans-serif;
+    font-weight: 600;
 }
 
 /*
@@ -40,7 +41,8 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, rgb(189, 236, 236) 0%, rgb(177, 225, 230) 100%);
+    /* background: url('../img/geometry2.png'); */
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -54,7 +56,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: rgb(243, 231, 225);
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -67,7 +69,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: rgb(158, 211, 199);
     cursor: default;
 }
 
@@ -77,12 +79,12 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: rgb(109, 184, 134);
     font-size: 33px;
 }
 
 .deck .card.nomatch {
-    background: #ffa489;
+    background: #FFB6B9;
 }
 
 @keyframes shake {
@@ -167,7 +169,7 @@ h1 {
 }
 
 .modal h1 {
-    color: #3cc2e7;
+    color: rgb(109, 184, 134);
 }
 
 .hide {
@@ -176,7 +178,7 @@ h1 {
 
 button {
     color: white;
-    background: #3cc2e7;
+    background: rgb(109, 184, 134);
     border: none;
     cursor: pointer;
     padding: 10px;
