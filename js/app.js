@@ -132,9 +132,7 @@ function lockCards() {
     card2.classList += " match";
     console.log(card2);
     
-    openCards = [];
-    card1 = "";
-    card2 = "";
+    resetOpenCards()
     checkMatches();
 }
 
@@ -146,6 +144,11 @@ function removeOpenCards() {
     card1.classList.remove("open", "show", "nomatch");
     card2.classList.remove("open", "show", "nomatch");
 
+    resetOpenCards();
+}
+
+// Reset open cards 
+function resetOpenCards() {
     card1 = "";
     card2 = "";
     openCards = [];
@@ -195,12 +198,12 @@ function winnersScreen() {
 
 // New game
 function restartGame() {
-    openCards = [];
     moves = 0;
     movesDisplay.innerHTML = 0;
     matches = 0;
 
     clearInterval(interval);
+    resetOpenCards();
     starRatingUpdate();
     updateCards();
     startTimer();
