@@ -99,20 +99,32 @@ function showSymbol() {
 
 // Add card to array of open cards
 function addOpenCard() {
-    if (card1 === "") {
+    if (!this.classList.contains("locked")) {
+        if (card1 === "") {
         card1 = this;
+        card1.classList+= " locked";
+        openCards.push(this.firstElementChild.classList
+            .toString()
+            .slice(0, -3));
+        addMoves();
     } else if (card2 === "") {
-        card2 = this;
+        if (this.classList.contains("locked")) {
+            card2 = "";
+        } else {
+            card2 = this;
+            card2.classList += " locked";
+            openCards.push(this.firstElementChild.classList
+                .toString()
+                .slice(0, -3));
+            addMoves();
+        }
     }
-
-    addMoves();
-    openCards.push(this.firstElementChild.classList
-        .toString()
-        .slice(0, -3));
-    // Check if there are 2 cards in array
-    if (openCards.length == 2) {
-        checkCards();
-    }
+}
+        
+        // Check if there are 2 cards in array
+        if (openCards.length == 2) {
+                checkCards();
+            }
 }
 
 // Check if cards match
@@ -129,22 +141,19 @@ function checkCards() {
 
 // Lock cards if they match
 function lockCards() {
-    card1.classList += " match";
-    card2.classList += " match";
+    card1.classList += " match enlarge";
+    card2.classList += " match enlarge";
 }
 
 function nomatch() {
-    card1.classList += " nomatch";
-    card2.classList += " nomatch";
+    card1.classList += " nomatch shake";
+    card2.classList += " nomatch shake";
 }
 
 // Remove cards from array if no match
 function removeOpenCards() {
-    card1.classList += " nomatch";
-    card2.classList += " nomatch";
-
-    card1.classList.remove("open", "show", "nomatch");
-    card2.classList.remove("open", "show", "nomatch");
+    card1.classList = "card";
+    card2.classList = "card";
 
     resetOpenCards();
 }
