@@ -99,6 +99,7 @@ function showSymbol() {
 
 // Add card to array of open cards
 function addOpenCard() {
+    // Check to see if card selected is locked
     if (!this.classList.contains("locked")) {
         if (card1 === "") {
         card1 = this;
@@ -108,6 +109,7 @@ function addOpenCard() {
             .slice(0, -3));
         addMoves();
     } else if (card2 === "") {
+        // Check to see if card selected is locked for card2
         if (this.classList.contains("locked")) {
             card2 = "";
         } else {
@@ -121,10 +123,10 @@ function addOpenCard() {
     }
 }
         
-        // Check if there are 2 cards in array
-        if (openCards.length == 2) {
-                checkCards();
-            }
+    // Check if there are 2 cards in array
+    if (openCards.length == 2) {
+            checkCards();
+        }
 }
 
 // Check if cards match
@@ -145,6 +147,7 @@ function lockCards() {
     card2.classList += " match enlarge";
 }
 
+// Add classes if does not match
 function nomatch() {
     card1.classList += " nomatch shake";
     card2.classList += " nomatch shake";
@@ -236,11 +239,11 @@ function startTimer() {
     interval = setInterval(tick, 1000);
 }
 
-// when the page loads
 function init() {
     updateCards();
     addEventListeners();
     startTimer();
 }
 
+// Run function when page loads
 init();
