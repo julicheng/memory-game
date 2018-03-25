@@ -20,10 +20,12 @@ let cardSymbols = [
 
 // Cards
 let cards = document.querySelectorAll(".card");
-
-// Card matching variables
-let movesDisplay = document.querySelector(".moves");
+let card1 = "";
+let card2 = "";
 let openCards = [];
+
+// Moves and matches
+let movesDisplay = document.querySelector(".moves");
 let moves = 0;
 let matches = 0;
 
@@ -97,6 +99,14 @@ function showSymbol() {
 
 // Add card to array of open cards
 function addOpenCard() {
+    if (card1 === "") {
+        card1 = this;
+        console.log(card1);
+    } else if (card2 === "") {
+        card2 = this;
+        console.log(card2);
+    }
+
     addMoves();
     openCards.push(this.firstElementChild.classList
         .toString()
@@ -118,24 +128,26 @@ function checkCards() {
 
 // Lock cards if they match
 function lockCards() {
-    let lock = document.querySelectorAll("." + openCards[0]);
-    lock[0].parentElement.classList += " match";
-    lock[1].parentElement.classList += " match";
-
+    card1.classList += " match";
+    card2.classList += " match";
+    console.log(card2);
+    
     openCards = [];
+    card1 = "";
+    card2 = "";
     checkMatches();
 }
 
 // Remove cards from array if no match
 function removeOpenCards() {
-    let unlock_0 = document.querySelectorAll("." + openCards[0]);
-    let unlock_1 = document.querySelectorAll("." + openCards[1]);
+    card1.classList += " nomatch";
+    card2.classList += " nomatch";
 
-    unlock_0[0].parentElement.classList.remove("open", "show");
-    unlock_0[1].parentElement.classList.remove("open", "show");
-    unlock_1[0].parentElement.classList.remove("open", "show");
-    unlock_1[1].parentElement.classList.remove("open", "show");
+    card1.classList.remove("open", "show", "nomatch");
+    card2.classList.remove("open", "show", "nomatch");
 
+    card1 = "";
+    card2 = "";
     openCards = [];
 }
 
