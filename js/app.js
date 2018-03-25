@@ -18,19 +18,28 @@ let cardSymbols = [
   "fa-bomb"
 ];
 
-// Initialize variables
+// Cards
 let cards = document.querySelectorAll(".card");
-let movesDisplay = document.querySelector(".moves");
+
+// Restart variables
 let restart = document.querySelector(".fa-repeat");
+
+// Card matching variables
+let movesDisplay = document.querySelector(".moves");
 let openCards = [];
 let moves = 0;
 let matches = 0;
 
-function init() {
-    updateCards();
-    addEventListeners();
-}
+// Star rating variables
+let star_0 = document.querySelectorAll(".fa-star")[0];
+let star_1 = document.querySelectorAll(".fa-star")[1];
+let star_2 = document.querySelectorAll(".fa-star")[2];
 
+// Timer variables
+let timer = document.querySelector(".timer");
+let seconds = 0;
+let minutes = 0;
+let interval = "";
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -94,6 +103,7 @@ function checkCards() {
     }
 }
 
+// Lock cards if they match
 function lockCards() {
     let lock = document.querySelectorAll("." + openCards[0]);
     lock[0].parentElement.classList += " match";
@@ -103,6 +113,7 @@ function lockCards() {
     checkMatches();
 }
 
+// Remove cards from array if no match
 function removeOpenCards() {
     let unlock_0 = document.querySelectorAll("." + openCards[0]);
     let unlock_1 = document.querySelectorAll("." + openCards[1]);
@@ -120,6 +131,19 @@ function addMoves() {
     moves++;
     movesDisplay.innerHTML = moves;
     console.log(moves);
+    starRatingUpdate();
+}
+
+function starRatingUpdate() {
+    if (moves <= 20){
+        star_0.classList = "fa fa-star";
+        star_1.classList = "fa fa-star";
+        star_2.classList = "fa fa-star";
+    } else if (moves <= 30) {
+        star_2.classList.remove("fa-star");
+    } else {
+        star_1.classList.remove("fa-star");
+    }
 }
 
 // Check matches
@@ -130,18 +154,46 @@ function checkMatches() {
     }
 }
 
+// Display modal if all matches found
 function winnersScreen() {
     console.log("winner!")
 }
 
+// New game
 function restartGame() {
     openCards = [];
     moves = 0;
     movesDisplay.innerHTML = 0;
     matches = 0;
 
+    clearInterval(interval);
+    starRatingUpdate();
     updateCards();
+    startTimer();
+}
+
+// Run timer
+function startTimer() {
+    seconds = 0;
+    minutes = 0;
+
+    function tick() {
+        timer.innerHTML = minutes + ":" + seconds;
+        seconds += 1;
+        if (seconds === 60) {
+        minutes += 1;
+        seconds = 0;
+        }
+    }
+        
+    interval = setInterval(tick, 1000);
 }
 
 // when the page loads
+function init() {
+    updateCards();
+    addEventListeners();
+    startTimer();
+}
+
 init();
