@@ -191,7 +191,7 @@ function starRatingUpdate() {
 function checkMatches() {
     matches++;
     if (matches === 8) {
-      winnersScreen();
+      setTimeout(winnersScreen, 800);
     }
 }
 
