@@ -107,7 +107,6 @@ function addOpenCard() {
         openCards.push(this.firstElementChild.classList
             .toString()
             .slice(0, -3));
-        addMoves();
     } else if (card2 === "") {
         // Check to see if card selected is locked for card2
         if (this.classList.contains("locked")) {
@@ -118,13 +117,13 @@ function addOpenCard() {
             openCards.push(this.firstElementChild.classList
                 .toString()
                 .slice(0, -3));
-            addMoves();
         }
     }
 }
         
     // Check if there are 2 cards in array
     if (openCards.length == 2) {
+            addMoves();
             checkCards();
         }
 }
@@ -177,11 +176,11 @@ function addMoves() {
 
 // Update star rating
 function starRatingUpdate() {
-    if (moves <= 25){
+    if (moves <= 12){
         star_0.classList = "fa fa-star";
         star_1.classList = "fa fa-star";
         star_2.classList = "fa fa-star";
-    } else if (moves <= 35) {
+    } else if (moves <= 17) {
         star_2.classList.remove("fa-star");
     } else {
         star_1.classList.remove("fa-star");
@@ -200,9 +199,9 @@ function checkMatches() {
 function winnersScreen() {
     clearInterval(interval);
     modal.classList.remove("hide");
-    if (moves <= 25) {
+    if (moves <= 12) {
         stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 3 stars for you!"
-    } else if (moves <= 35) {
+    } else if (moves <= 17) {
         stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 2 stars for you!"
     } else {
         stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 1 star for you!";
