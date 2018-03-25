@@ -101,10 +101,8 @@ function showSymbol() {
 function addOpenCard() {
     if (card1 === "") {
         card1 = this;
-        console.log(card1);
     } else if (card2 === "") {
         card2 = this;
-        console.log(card2);
     }
 
     addMoves();
@@ -121,7 +119,10 @@ function addOpenCard() {
 function checkCards() {
     if (openCards[0] === openCards[1]) {
         lockCards();
+        resetOpenCards();
+        checkMatches();
     } else {
+        nomatch();
         setTimeout(removeOpenCards, 500);
     }
 }
@@ -130,10 +131,11 @@ function checkCards() {
 function lockCards() {
     card1.classList += " match";
     card2.classList += " match";
-    console.log(card2);
-    
-    resetOpenCards()
-    checkMatches();
+}
+
+function nomatch() {
+    card1.classList += " nomatch";
+    card2.classList += " nomatch";
 }
 
 // Remove cards from array if no match
@@ -158,7 +160,6 @@ function resetOpenCards() {
 function addMoves() {
     moves++;
     movesDisplay.innerHTML = moves;
-    console.log(moves);
     starRatingUpdate();
 }
 
