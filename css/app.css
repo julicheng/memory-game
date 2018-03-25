@@ -81,6 +81,48 @@ h1 {
     font-size: 33px;
 }
 
+.deck .card.nomatch {
+    background: #ffa489;
+}
+
+@keyframes shake {
+    10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes enlarge {
+    0% {
+        transform: scale(0.7);
+        -webkit-transform: scale(0.7);
+    }
+    100% {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+    }
+}
+
+.enlarge {
+    animation: enlarge 0.4s ease-in-out alternate;
+    -webkit-animation: enlarge 0.4s ease-in-out alternate;
+}
+
 /*
  * Styles for the Score Panel
  */
