@@ -21,9 +21,6 @@ let cardSymbols = [
 // Cards
 let cards = document.querySelectorAll(".card");
 
-// Restart variables
-let restart = document.querySelector(".fa-repeat");
-
 // Card matching variables
 let movesDisplay = document.querySelector(".moves");
 let openCards = [];
@@ -35,11 +32,23 @@ let star_0 = document.querySelectorAll(".fa-star")[0];
 let star_1 = document.querySelectorAll(".fa-star")[1];
 let star_2 = document.querySelectorAll(".fa-star")[2];
 
+// Restart variables
+let restart = document.querySelector(".fa-repeat");
+
 // Timer variables
 let timer = document.querySelector(".timer");
 let seconds = 0;
 let minutes = 0;
 let interval = "";
+
+// Modal
+let modal = document.querySelector(".modal");
+
+// Play again button
+let replay = document.querySelector('.replay-button');
+
+// Stats paragraph
+let stats = document.querySelector(".stats");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -69,6 +78,10 @@ function updateCards() {
 // Set up event listener for a card when it is clicked
 function addEventListeners() {
     restart.addEventListener("click", restartGame);
+    replay.addEventListener("click", restartGame);
+    replay.addEventListener("click", function() {
+        modal.classList += " hide";
+    });
     for (let i = 0; i < cards.length; i++) {
         // Display the card's symbol
         cards[i].addEventListener("click", showSymbol);
@@ -134,12 +147,13 @@ function addMoves() {
     starRatingUpdate();
 }
 
+// Update star rating
 function starRatingUpdate() {
-    if (moves <= 20){
+    if (moves <= 25){
         star_0.classList = "fa fa-star";
         star_1.classList = "fa fa-star";
         star_2.classList = "fa fa-star";
-    } else if (moves <= 30) {
+    } else if (moves <= 35) {
         star_2.classList.remove("fa-star");
     } else {
         star_1.classList.remove("fa-star");
@@ -156,7 +170,15 @@ function checkMatches() {
 
 // Display modal if all matches found
 function winnersScreen() {
-    console.log("winner!")
+    clearInterval(interval);
+    modal.classList.remove("hide");
+    if (moves <= 25) {
+        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 3 stars for you!"
+    } else if (moves <= 35) {
+        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 2 stars for you!"
+    } else {
+        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 1 star for you!";
+    }
 }
 
 // New game
