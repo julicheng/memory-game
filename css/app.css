@@ -42,7 +42,6 @@ h1 {
     width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, rgb(189, 236, 236) 0%, rgb(177, 225, 230) 100%);
-    /* background: url('../img/geometry2.png'); */
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -51,6 +50,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+    border: 2px solid rgb(199, 228, 208);
 }
 
 .deck .card {
