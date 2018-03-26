@@ -11,7 +11,7 @@ The timer will start as soon as the page loads.
 * If the cards do not match, both cards are flipped face down.
 * The game ends once all cards have been correctly matched.
 
-When the game ends, the number of moves made, star rating and time to complete will be displed.
+When the game ends, the number of moves made, star rating and time to complete will be displayed.
 
 To restart the game, click on the restart icon.
 
