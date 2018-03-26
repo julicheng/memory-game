@@ -200,11 +200,23 @@ function winnersScreen() {
     clearInterval(interval);
     modal.classList.remove("hide");
     if (moves <= 12) {
-        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 3 stars for you!"
+        if (minutes === 0) {
+        stats.innerHTML = "You made " + moves + " moves in " + seconds + " seconds! 3 stars for you! <p>Give yourself a pat on the back!</p><i>&#9733;&#9733;&#9733;</i>"; 
+        } else {
+            stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 3 stars for you! <p>Give yourself a pat on the back!</p><i>&#9733;&#9733;&#9733;</i>"; 
+        }
     } else if (moves <= 17) {
-        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 2 stars for you!"
+        if (minutes === 0) {
+          stats.innerHTML = "You made " + moves + " moves in " + seconds + " seconds! 2 stars for you! <p>Good job!</p><i>&#9733;&#9733;</i>";
+        } else {
+          stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 2 stars for you! <p>Good job!</p><i>&#9733;&#9733;</i>";
+        }
     } else {
-        stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 1 star for you!";
+        if (minutes === 0) {
+          stats.innerHTML = "You made " + moves + " moves in " + seconds + " seconds! 1 star for you! <p>Not bad!</p><i>&#9733;</i>";
+        } else {
+          stats.innerHTML = "You made " + moves + " moves in " + minutes + " minutes " + seconds + " seconds! 1 star for you! <p>Not bad!</p><i>&#9733;</i>";
+        }
     }
 }
 
